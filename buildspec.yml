@@ -11,7 +11,7 @@ phases:
             # the CodeBuild image has a bug that prevents SAM templates from
             # packaging correctly.
             - pip install --upgrade awscli
-            - apt-get install -y jq
+            - yum install -y jq
     pre_build:
         commands:
             # Loop through directory structure and pip install all function libraries
