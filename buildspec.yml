@@ -29,4 +29,5 @@ phases:
     build:
         commands:
             # Create CFN change set
-            - deploy_or_update.sh
+            - chmod +x ./deploy_or_update.sh
+            - ./deploy_or_update.sh
