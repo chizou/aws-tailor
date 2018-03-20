@@ -20,13 +20,17 @@
         "dynamodbStreamsTalrAdsecgroup" : {
             "Value" : "test-group",
             "Export" : {
-                "Name": "talr-prod-dynamodbStreamsTalrAdsecgroup"
+                "Name": {
+                    "Fn::Sub" : "talr-${Stage}-dynamodbStreamsTalrAdsecgroup"
+                }
             }
         },
         "dynamodbTableNameTalrAdsecgroup" : {
             "Value" : "test-group",
             "Export" : {
-                "Name" : "talr-prod-dynamodbTableNameTalrAdsecgroup"
+                "Name" : {
+                    "Fn::Sub" : "talr-${Stage}-dynamodbTableNameTalrAdsecgroup"
+                }
             }
         }
     }
