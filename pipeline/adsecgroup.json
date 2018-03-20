@@ -6,6 +6,16 @@
             "AllowedValues" : ["alpha","beta","prod","test","dev","stg","prd","tst"],
             "Description" : "The stage to be deployed",
             "Type" : "String"
+        },
+        "dynamodbStreamsTalrAdsecgroup": {
+            "Default" : "*",
+            "Description" : "Value for dynamodbTableNameTalrAdsecgroup",
+            "Type" : "String"
+        },
+        "dynamodbTableNameTalrAdsecgroup": {
+            "Default" : "*",
+            "Description" : "Value for dynamodbTableNameTalrAdsecgroup",
+            "Type" : "String"
         }
     },
     "Resources" : {
@@ -18,7 +28,7 @@
     },
     "Outputs" : {
         "dynamodbStreamsTalrAdsecgroup" : {
-            "Value" : "test-group",
+            "Value" : { "Ref" : "dynamodbStreamsTalrAdsecgroup" },
             "Export" : {
                 "Name": {
                     "Fn::Sub" : "talr-${Stage}-dynamodbStreamsTalrAdsecgroup"
@@ -26,7 +36,7 @@
             }
         },
         "dynamodbTableNameTalrAdsecgroup" : {
-            "Value" : "test-group",
+            "Value" : { "Ref" : "dynamodbTableNameTalrAdsecgroup" },
             "Export" : {
                 "Name" : {
                     "Fn::Sub" : "talr-${Stage}-dynamodbTableNameTalrAdsecgroup"
