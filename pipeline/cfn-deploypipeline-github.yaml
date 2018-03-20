@@ -83,6 +83,7 @@ Resources:
                           - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/tailor-${Stage}/*'
                         Action:
                           - 'cloudformation:CreateChangeSet'
+                          - 'cloudformation:DescribeStacks'
     CodeBuildProject:
         Type: AWS::CodeBuild::Project
         Properties:
