@@ -13,7 +13,8 @@ phases:
             - pip install --upgrade awscli
             - cat /etc/apt/sources.list
             - apt-cache policy
-            - apt install -y jq
+            - apt-get update
+            - apt-get install -y jq
     pre_build:
         commands:
             # Loop through directory structure and pip install all function libraries
