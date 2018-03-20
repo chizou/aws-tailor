@@ -32,6 +32,8 @@ phases:
             - aws s3 cp s3://$S3_BUCKET/$STAGE_NAME/config/cfn-config.json .
     build:
         commands:
-            # Create CFN change set
+            # Deploy dummy AD security group names
+            - aws cloudformation create-stack --stack-name tailor-$STAGE_NAME-adsecgroup --template-body file://pipeline/adsecgroup.json --parameters ParameterKey=Stage,ParameterValue=$STAGE_NAME
+            # Deploy CFN change set
             - chmod +x ./deploy_or_update.sh
             - ./deploy_or_update.sh

@@ -1,0 +1,33 @@
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Description" : "Core network creation across 2 AZs. Subnets, route tables, NACLs, IGW, NAT , VGW and security groups are created.",
+    "Parameters" : {
+        "Stage" : {
+            "AllowedValues" : ["alpha","beta","prod","test","dev","stg","prd","tst"],
+            "Description" : "The stage to be deployed",
+            "Type" : "String"
+        }
+    },
+    "Resources" : {
+        "StackDatetimeResource": {
+            "Type" : "AWS::CloudFormation::WaitConditionHandle",
+            "Metadata" : {
+                "Comment": "This is a dummy resource"
+            }
+        }
+    },
+    "Outputs" : {
+        "dynamodbStreamsTalrAdsecgroup" : {
+            "Value" : "test-group",
+            "Export" : {
+                "Name": "talr-prod-dynamodbStreamsTalrAdsecgroup"
+            }
+        },
+        "dynamodbTableNameTalrAdsecgroup" : {
+            "Value" : "test-group",
+            "Export" : {
+                "Name" : "talr-prod-dynamodbTableNameTalrAdsecgroup"
+            }
+        }
+    }
+}
