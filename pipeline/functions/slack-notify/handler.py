@@ -13,7 +13,7 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(currentdir, "./vendored"))
 
 # Modules downloaded into the vendored directory
-import requests
+from botocore.vendored import requests
 
 # Logging for Serverless
 log = logging.getLogger()
