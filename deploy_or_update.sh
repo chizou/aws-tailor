@@ -14,5 +14,5 @@ else
     aws cloudformation deploy \
         --template-file sam-output.yaml \
         --stack-name "tailor-$STAGE_NAME" \
-        --parameter-overrides "$parameters"
+        --parameter-overrides $parameters
 fi
