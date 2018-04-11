@@ -8,12 +8,12 @@
             "Type" : "String"
         },
         "dynamodbStreamsTalrAdsecgroup": {
-            "Default" : "*",
+            "Default" : "arn:aws:ec2:us-east-1:123456789012:dedicated-host/h-12345678",
             "Description" : "Value for dynamodbTableNameTalrAdsecgroup",
             "Type" : "String"
         },
         "dynamodbTableNameTalrAdsecgroup": {
-            "Default" : "*",
+            "Default" : "arn:aws:ec2:us-east-1:123456789012:dedicated-host/h-12345678",
             "Description" : "Value for dynamodbTableNameTalrAdsecgroup",
             "Type" : "String"
         }
