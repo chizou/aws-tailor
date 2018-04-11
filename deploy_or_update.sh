@@ -8,12 +8,14 @@ if [[ $? -eq 0 ]]; then
         --role-arn "arn:aws:iam::$AWS_ACCOUNT_NUMBER:role/$CFN_ROLE" \
         --change-set-name "tailor-$STAGE_NAME-ChangeSet" \
         --stack-name "tailor-$STAGE_NAME" \
-        --capabilities CAPABILITY_IAM
+        --capabilities CAPABILITY_IAM \
+        --debug
 else
     parameters=$(jq -r '.[] | "\(.ParameterKey)=\(.ParameterValue)"' < cfn-config.json | sed ':a;N;$!ba;s/\n/ /g')
     aws cloudformation deploy \
         --template-file sam-output.yaml \
         --stack-name "tailor-$STAGE_NAME" \
         --parameter-overrides $parameters \
-        --capabilities CAPABILITY_IAM
+        --capabilities CAPABILITY_IAM \
+        --debug
 fi
