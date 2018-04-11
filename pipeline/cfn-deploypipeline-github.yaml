@@ -83,14 +83,16 @@ Resources:
                           - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/tailor-${Stage}/*'
                         Action:
                           - 'cloudformation:CreateChangeSet'
+                          - 'cloudformation:DescribeChangeSet'
                           - 'cloudformation:DescribeStacks'
+                          - 'cloudformation:ExecuteChangeSet'
                       - Effect: Allow
                         Resource:
                             - !Sub 'arn:aws:cloudformation:${AWS::Region}:aws:transform/*'
                         Action:
                           - 'cloudformation:CreateChangeSet'
-                          - 'cloudformation:ExecuteChangeSet'
                           - 'cloudformation:DescribeChangeSet'
+                          - 'cloudformation:ExecuteChangeSet'
                       - Effect: Allow
                         Resource:
                           - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/tailor-${Stage}-adsecgroup/*'
