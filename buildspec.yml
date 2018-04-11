@@ -33,7 +33,7 @@ phases:
     build:
         commands:
             # Deploy dummy AD security group names
-            - aws cloudformation create-stack --stack-name tailor-$STAGE_NAME-adsecgroup --template-body file://pipeline/adsecgroup.json --parameters ParameterKey=Stage,ParameterValue=$STAGE_NAME
+            - aws cloudformation describe-stacks --stack-name tailor-$STAGE_NAME-adsecgroup || aws cloudformation create-stack --stack-name tailor-$STAGE_NAME-adsecgroup --template-body file://pipeline/adsecgroup.json --parameters ParameterKey=Stage,ParameterValue=$STAGE_NAME
             # Deploy CFN change set
             - chmod +x ./deploy_or_update.sh
             - ./deploy_or_update.sh
