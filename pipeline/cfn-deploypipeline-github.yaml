@@ -60,8 +60,7 @@ Resources:
                     Statement:
                       - Effect: Allow
                         Resource:
-                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ServiceName}-build-${Stage}'
-                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ServiceName}-build-${Stage}:*'
+                          - '*'
                         Action:
                           - 'logs:CreateLogGroup'
                           - 'logs:CreateLogStream'
@@ -80,19 +79,49 @@ Resources:
                           - 'iam:PassRole'
                       - Effect: Allow
                         Resource:
-                          - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/tailor-${Stage}/*'
+                          - '*'
+                        Action:
+                          - 'cloudformation:DescribeChangeSet'
+                      - Effect: Allow
+                        Resource:
+                            - !Sub 'arn:aws:cloudformation:${AWS::Region}:aws:transform/*'
+                            - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/tailor-${Stage}/*'
                         Action:
                           - 'cloudformation:CreateChangeSet'
-                          - 'cloudformation:DescribeChangeSet'
                           - 'cloudformation:DescribeStacks'
                           - 'cloudformation:ExecuteChangeSet'
                       - Effect: Allow
                         Resource:
-                            - !Sub 'arn:aws:cloudformation:${AWS::Region}:aws:transform/*'
+                          - !Sub 'arn:aws:sns:${AWS::Region}:${AWS::AccountId}:talr-*'
                         Action:
-                          - 'cloudformation:CreateChangeSet'
-                          - 'cloudformation:DescribeChangeSet'
-                          - 'cloudformation:ExecuteChangeSet'
+                          - 'sns:*'
+                      - Effect: Allow
+                        Resource:
+                          - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/talr-*'
+                        Action:
+                          - 'application-autoscaling:*'
+                          - 'dynamodb:*'
+                      - Effect: Allow
+                        Resource:
+                          - '*'
+                        Action:
+                          - 'ec2:CreateSecurityGroup'
+                          - 'ec2:DeleteSecurityGroup'
+                          - 'ec2:DescribeSecurityGroups'
+                          - 'ec2:DescribeSubnets'
+                          - 'ec2:DescribeVpcs'
+                      - Effect: Allow
+                        Resource:
+                          - '*'
+                        Action:
+                          - 'acm:DeleteCertificate'
+                          - 'acm:DescribeCertificate'
+                          - 'acm:RequestCertificate'
+                      - Effect: Allow
+                        Resource:
+                          - 'arn:aws:apigateway:${AWS::Region}::/restapis*'
+                        Action:
+                          - 'apigateway:*'
                       - Effect: Allow
                         Resource:
                           - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/tailor-${Stage}-adsecgroup/*'
