@@ -2610,6 +2610,20 @@ Resources:
                     Resource: arn:aws:iam::*:role/PayerAccountAccessRole
             Roles:
                 - Ref: iamRoleLambdaTalrVpcdns
+    iamPolicyLambdaTalrVpcdns4:
+        Type: AWS::IAM::Policy
+        Properties:
+            PolicyName: AssumeRole
+            PolicyDocument:
+                Version: '2012-10-17'
+                Statement:
+                -
+                    Effect: Allow
+                    Action:
+                        - ec2:DescribeVpcs
+                    Resource: "*"
+            Roles:
+                - Ref: iamRoleLambdaTalrVpcdns
     iamRoleLambdaTalrAccountUpdateVpcdns:
         Type: AWS::IAM::Role
         Properties:
