@@ -196,9 +196,9 @@ def handler(event, context):
                 print("createVpc:", createVpc)
 
     # Delete all Default VPCs in all regions
-    delete_default_vpcs(la_aws_access_key_id=la_aws_access_key_id,
-                        la_aws_secret_access_key=la_aws_secret_access_key,
-                        la_aws_session_token=la_aws_session_token)
+    # delete_default_vpcs(la_aws_access_key_id=la_aws_access_key_id,
+    #                     la_aws_secret_access_key=la_aws_secret_access_key,
+    #                     la_aws_session_token=la_aws_session_token)
 
     delete_nipap_daemon_stack(cfnIncomingMessage['StackName'])
 
