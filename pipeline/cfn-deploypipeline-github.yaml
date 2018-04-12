@@ -84,8 +84,8 @@ Resources:
                           - 'cloudformation:DescribeChangeSet'
                       - Effect: Allow
                         Resource:
-                            - !Sub 'arn:aws:cloudformation:${AWS::Region}:aws:transform/*'
-                            - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/tailor-${Stage}/*'
+                          - !Sub 'arn:aws:cloudformation:${AWS::Region}:aws:transform/*'
+                          - !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/tailor-${Stage}/*'
                         Action:
                           - 'cloudformation:CreateChangeSet'
                           - 'cloudformation:DescribeStacks'
@@ -119,7 +119,7 @@ Resources:
                           - 'acm:RequestCertificate'
                       - Effect: Allow
                         Resource:
-                          - 'arn:aws:apigateway:${AWS::Region}::/restapis*'
+                          - !Sub 'arn:aws:apigateway:${AWS::Region}::/restapis*'
                         Action:
                           - 'apigateway:*'
                       - Effect: Allow
