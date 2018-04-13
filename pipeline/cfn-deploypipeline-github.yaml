@@ -62,6 +62,11 @@ Resources:
                         Resource:
                           - '*'
                         Action:
+                          - 'cloudwatch:*'
+                      - Effect: Allow
+                        Resource:
+                          - '*'
+                        Action:
                           - 'logs:CreateLogGroup'
                           - 'logs:CreateLogStream'
                           - 'logs:PutLogEvents'
@@ -74,7 +79,19 @@ Resources:
                           - 's3:PutObject'
                       - Effect: Allow
                         Resource:
+                          - !Sub 'arn:aws:iam::${AWS::AccountId}:role/tailor*'
+                        Action:
+                          - 'iam:AttachRolePolicy'
+                          - 'iam:CreateRole'
+                          - 'iam:DeleteRole'
+                          - 'iam:GetRole'
+                          - 'iam:DeleteRolePolicy'
+                          - 'iam:PutRolePolicy'
+                      - Effect: Allow
+                        Resource:
                           - !Sub 'arn:aws:iam::${AWS::AccountId}:role/${CloudFormationExecutionRole}'
+                          - !Sub 'arn:aws:iam::${AWS::AccountId}:role/tailor-${Stage}-dynamodbTables-dynamoAutoscalingRole*'
+                          - !Sub 'arn:aws:iam::${AWS::AccountId}:role/tailor-${Stage}-iamCore*'
                         Action:
                           - 'iam:PassRole'
                       - Effect: Allow
@@ -92,12 +109,17 @@ Resources:
                           - 'cloudformation:ExecuteChangeSet'
                       - Effect: Allow
                         Resource:
+                          - !Sub 'arn:aws:sns:${AWS::Region}:${AWS::AccountId}:*'
+                        Action:
+                          - 'sns:ListTopics'
+                      - Effect: Allow
+                        Resource:
                           - !Sub 'arn:aws:sns:${AWS::Region}:${AWS::AccountId}:talr-*'
                         Action:
                           - 'sns:*'
                       - Effect: Allow
                         Resource:
-                          - !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/talr-*'
+                          - '*'
                         Action:
                           - 'application-autoscaling:*'
                           - 'dynamodb:*'
@@ -117,6 +139,21 @@ Resources:
                           - 'acm:DeleteCertificate'
                           - 'acm:DescribeCertificate'
                           - 'acm:RequestCertificate'
+                      - Effect: Allow
+                        Resource:
+                          - '*'
+                        Action:
+                          - 'events:*'
+                      - Effect: Allow
+                        Resource:
+                          - '*'
+                        Action:
+                          - 'lambda:CreateEventSourceMapping'
+                      - Effect: Allow
+                        Resource:
+                          - !Sub 'arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:talr*'
+                        Action:
+                          - 'lambda:*'
                       - Effect: Allow
                         Resource:
                           - !Sub 'arn:aws:apigateway:${AWS::Region}::/restapis*'
